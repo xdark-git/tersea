@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('company_id')
                     ->constrained()
                     ->onUpdate('cascade');
-            $table->rememberToken();
+            // $table->rememberToken();
             $table->timestamps();
         });
     }
