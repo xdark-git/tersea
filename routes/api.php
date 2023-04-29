@@ -20,8 +20,10 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::prefix('/admin/')->group(function(){
-    Route::post('login', [AdminController::class, 'login']);
-    Route::get('getAll', [AdminController::class, 'getAll']);
-    Route::post('add', [AdminController::class, 'add']);
+Route::controller(AdminController::class)->prefix('/admin/')->group(function(){
+    Route::post('login', 'login');
+    Route::middleware(['auth:sanctum', 'ability:admin'])->group(function (){
+        Route::get('getAll', 'getAll');
+        Route::post('add', 'add');
+    });
 });
