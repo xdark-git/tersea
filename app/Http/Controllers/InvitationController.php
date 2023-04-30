@@ -22,7 +22,6 @@ class InvitationController extends Controller
    public function addNew(Request $request)
    {
         $request->validate([
-            'employeeName' => 'required',
             'employeeEmail' => 'required',
             'companyName' => 'required',
         ]);
@@ -62,7 +61,6 @@ class InvitationController extends Controller
             }
 
             $employee = Employee::create([
-                'name' => $request->employeeName,
                 'email' => $request->employeeEmail,
                 'company_id' => $company->id,
             ]);
