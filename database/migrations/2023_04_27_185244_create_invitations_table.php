@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('invitations', function (Blueprint $table) {
             $table->id();
-            $table->string('link')->unique();
+            $table->string('link_code')->unique();
             $table->foreignId('admin_id')
                     ->nullable()
                     ->constrained()

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('invitation_histories', function (Blueprint $table) {
             $table->id();
-            $table->string('action')->unique();
+            $table->string('action');
             $table->foreignId('invitation_id')
                     ->constrained()
                     ->onDelete('cascade')
