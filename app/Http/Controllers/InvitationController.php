@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EmployeeResource;
 use App\Mail\EmployeeInvitation;
 use App\Models\Company;
 use App\Models\Employee;
@@ -101,21 +102,45 @@ class InvitationController extends Controller
             "password" => "required"
         ]);
 
-        $invitation = Invitation::where('link_code', $request->code)->first();
-        $invitation->status_id = Status::where('name', "Valider")->first()->id;
-        $invitation->save();
-
-        $employee = $invitation->employee;
-        $employee->name = $request->name;
-        $employee->phone = str_replace(' ', '', $request->phone);
-        $employee->address = $request->address;
-        $employee->birth = $request->birth;
-        $employee->password = Hash::make($request->password);
-        $employee->save();
-
-        return Response([
+        try{
+            $invitation = Invitation::where('link_code', $request->code)->first();
             
-        ], Response::HTTP_ACCEPTED );
+            if(!$invitation || $invitation->statuses->id == 3){
+                return Response([
+                    'message' => 'Invitation introuvable'
+                ], Response::HTTP_NOT_FOUND);
+            }
+
+            if($invitation->statuses->id == 2){
+                return Response([
+                    'message' => 'L\'invitation a déjà été validée.'
+                ], Response::HTTP_UNPROCESSABLE_ENTITY);
+            }
+           
+
+            $invitation->status_id = Status::where('name', "Valider")->first()->id;
+            $invitation->save();
+
+            $employee = $invitation->employee;
+            $employee->name = $request->name;
+            $employee->phone = str_replace(' ', '', $request->phone);
+            $employee->address = $request->address;
+            $employee->birth = $request->birth;
+            $employee->password = Hash::make($request->password);
+            $employee->save();
+
+            $token = $employee->createToken('token',  ['employee'])->plainTextToken;
+
+            return Response([
+                'data' => EmployeeResource::make($employee),
+                'token' => $token
+            ], Response::HTTP_ACCEPTED );
+            
+        }catch(Exception $e){
+            $error = new ApiError($e);
+
+            return $error->filter();
+        }
 
    }
 }
