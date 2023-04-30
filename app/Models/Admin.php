@@ -16,7 +16,7 @@ class Admin extends Authenticatable
 
     public function parent(): BelongsTo
     {
-        return $this->belongsTo(Admin::class);
+        return $this->belongsTo(Admin::class, 'admin_id', 'id');
     }
 
     public function children(): HasMany
