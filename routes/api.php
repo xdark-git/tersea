@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\InvitationController;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,5 +39,10 @@ Route::controller(CompanyController::class)->prefix('/company/')->group(function
     });
     Route::middleware(['auth:sanctum', 'ability:admin, employee'])->group(function (){
         Route::get('get-all-companies', 'getAll');
+    });
+});
+Route::controller(InvitationController::class)->prefix('/invitation/')->group(function(){
+    Route::middleware(['auth:sanctum', 'ability:admin'])->group(function (){
+        Route::post('add-new-employee', 'addNew');
     });
 });
