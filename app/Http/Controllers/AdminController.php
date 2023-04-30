@@ -7,6 +7,7 @@ use App\Models\Admin;
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
@@ -48,13 +49,34 @@ class AdminController extends Controller
         
     }
 
-    public function getAll()
+    public function getAllAdmins()
     {
         return AdminResource::collection(Admin::all());
     }
 
-    public function add()
+    public function addNewAdmin(Request $request)
     {
-        return;
+       try{
+            $request->validate([
+                'email' => 'required|email',
+                'name' => 'required',
+            ]);
+           
+            $user = Admin::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make(App::environment('APP_ADMIN_DEFAULT_PWD')),
+                'admin_id' => $request->user()->id  
+            ]);
+
+            return Response([
+                'data' => AdminResource::make($user),
+            ],Response::HTTP_ACCEPTED);
+
+       }catch(Exception $e){
+            return Response([
+                'message' => $e->getMessage()
+            ],Response::HTTP_BAD_REQUEST); 
+        }
     }
 }
