@@ -31,6 +31,6 @@ class Admin extends Authenticatable
 
     public function invitations(): HasMany
     {
-        return $this->hasMany(Invitation::class);
+        return $this->hasMany(Invitation::class, 'admin_id', 'id');
     }
 }

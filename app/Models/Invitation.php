@@ -11,7 +11,7 @@ class Invitation extends Model
 {
     use HasFactory;
 
-    protected $fillable = [ 'link', 'admin_id', 'employee_id', 'status_id'];
+    protected $fillable = [ 'link_code', 'admin_id', 'employee_id', 'status_id'];
 
     public function admin(): BelongsTo
     {

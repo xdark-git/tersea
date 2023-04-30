@@ -12,14 +12,16 @@ class Employee extends Authenticatable
 {
     use HasFactory, HasApiTokens;
 
+    protected $fillable = [ "name", "email", "password", "company_id", "address", "phone", "birth"];
+
     public function Invitation(): HasOne
     {
-        return $this->hasOne(Invitation::class);
+        return $this->hasOne(Invitation::class, 'employee_id', 'id');
     }
 
     public function company(): BelongsTo
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Company::class, 'company_id', 'id');
     }
 
 }
