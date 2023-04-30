@@ -4,14 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class InvitationHistory extends Model
 {
     use HasFactory;
 
-    public function invitations():HasMany
+    protected $fillable = [ "action", "invitation_id"];
+
+    public function invitations():BelongsTo
     {
-        return $this->hasMany(Invitation::class);
+        return $this->belongsTo(Invitation::class, 'invitation_id', 'id');
     }
 }
