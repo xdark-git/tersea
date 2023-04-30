@@ -90,4 +90,32 @@ class InvitationController extends Controller
             return $error->filter();
         }
    }
+
+   public function confirm(Request $request){
+        $request->validate([
+            "code" => "required",
+            "name" => "required",
+            "phone" => "required|regex:/^\+?\d{1,3}(\s?\d{2,3}){2,3}$/",
+            "address" => "required",
+            "birth" => "required|date",
+            "password" => "required"
+        ]);
+
+        $invitation = Invitation::where('link_code', $request->code)->first();
+        $invitation->status_id = Status::where('name', "Valider")->first()->id;
+        $invitation->save();
+
+        $employee = $invitation->employee;
+        $employee->name = $request->name;
+        $employee->phone = str_replace(' ', '', $request->phone);
+        $employee->address = $request->address;
+        $employee->birth = $request->birth;
+        $employee->password = Hash::make($request->password);
+        $employee->save();
+
+        return Response([
+            
+        ], Response::HTTP_ACCEPTED );
+
+   }
 }
