@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ApiError;
 use App\Http\Resources\AdminResource;
 use App\Models\Admin;
 use Exception;
@@ -17,13 +18,13 @@ class AdminController extends Controller
 {
     public function login(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
             
         try{
-            $request->validate([
-                'email' => 'required|email',
-                'password' => 'required',
-            ]);
-         
+             
             $user = Admin::where('email', $request->email)->first();
          
             if (! $user || ! Hash::check($request->password, $user->password)) {
@@ -40,10 +41,9 @@ class AdminController extends Controller
             ],Response::HTTP_ACCEPTED);
 
         }catch(Exception $e){
+           $error = new ApiError($e);
 
-            return Response([
-                'message' => $e->getMessage()
-            ],Response::HTTP_BAD_REQUEST); 
+           return $error->filter();
         }
         
         
@@ -82,9 +82,9 @@ class AdminController extends Controller
             ],Response::HTTP_ACCEPTED);
 
        }catch(Exception $e){
-            return Response([
-                'message' => $e->getMessage()
-            ],Response::HTTP_BAD_REQUEST); 
+            $error = new ApiError($e);
+
+            return $error->filter();
         }
     }
 }
