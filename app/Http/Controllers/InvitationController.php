@@ -72,11 +72,6 @@ class InvitationController extends Controller
                 'status_id' => Status::where('name', 'En attente')->first()->id
             ]);
 
-            InvitationHistory::create([
-                'action' => 'envoyé',
-                'invitation_id' => $invitation->id
-            ]);
-
             $domain = $request->getHost();
             $uri = $request->uri ?  $request->uri : '/invitation';
             $link =  $domain . $uri . '?code='.$invitation->link_code;
@@ -84,7 +79,8 @@ class InvitationController extends Controller
             Mail::send(New EmployeeInvitation($employee, $link));
 
             return Response([
-                'message' => 'Invitation envoyée'
+                'message' => 'Invitation envoyée',
+                'data' => $invitation,
             ], Response::HTTP_OK);
             
 
