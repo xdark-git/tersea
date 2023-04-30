@@ -42,6 +42,7 @@ Route::controller(CompanyController::class)->prefix('/company/')->group(function
     });
 });
 Route::controller(InvitationController::class)->prefix('/invitation/')->group(function(){
+    Route::post('confirm', 'confirm');
     Route::middleware(['auth:sanctum', 'ability:admin'])->group(function (){
         Route::post('add-new-employee', 'addNew');
     });
