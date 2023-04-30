@@ -28,7 +28,7 @@ class AdminController extends Controller
          
             if (! $user || ! Hash::check($request->password, $user->password)) {
                 return Response([
-                    'error' => 'The provided credentials are incorrect.']
+                    'message' => 'The provided credentials are incorrect.']
                     , Response::HTTP_UNAUTHORIZED);
             }
     
@@ -42,7 +42,7 @@ class AdminController extends Controller
         }catch(Exception $e){
 
             return Response([
-                'error' => $e->getMessage()
+                'message' => $e->getMessage()
             ],Response::HTTP_BAD_REQUEST); 
         }
         
@@ -66,7 +66,7 @@ class AdminController extends Controller
 
             if(Admin::where('email', $request->email)->first()){
                 return Response([
-                    'error' => 'The email address is already in use.'
+                    'message' => 'The email address is already in use.'
                 ], Response::HTTP_UNPROCESSABLE_ENTITY);
             }
            
@@ -83,7 +83,7 @@ class AdminController extends Controller
 
        }catch(Exception $e){
             return Response([
-                'error' => $e->getMessage()
+                'message' => $e->getMessage()
             ],Response::HTTP_BAD_REQUEST); 
         }
     }
