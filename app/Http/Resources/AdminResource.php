@@ -21,7 +21,12 @@ class AdminResource extends JsonResource
             'id' => $this->resource->id,
             'name' => $this->resource->name,
             'email' => $this->resource->email,
-            'admin_id' => $this->resource->parent(),
+            'admin' =>  $this->resource->parent ? [
+                'id' => $this->resource->parent->id,
+                'name' => $this->resource->parent->name,
+                'email'=> $this->resource->parent->email
+            ] : null,
+
             'created_at' => $this->resource->created_at,
             'updated_at' => $this->resource->updated_at,
 
