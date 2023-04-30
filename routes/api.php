@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(AdminController::class)->prefix('/admin/')->group(function(){
     Route::post('login', 'login');
     Route::middleware(['auth:sanctum', 'ability:admin'])->group(function (){
-        Route::get('getAll', 'getAll');
-        Route::post('add', 'add');
+        Route::get('get-all-admins', 'getAllAdmins');
+        Route::post('add-new-admin', 'addNewAdmin');
     });
 });
