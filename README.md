@@ -50,6 +50,8 @@ Lancer la commande suivant pour installer les dépendances du projet
 
 ### 4. Démarrer les containers Docker
 
+**Assurer vous que le port 8000 et le port 3306 de votre machine ne sont pas en cours d'utilisation**
+
 Pour démarrer les containers Docker, exécutez la commande :
 
 ```bash
@@ -63,7 +65,7 @@ Pour démarrer les containers Docker, exécutez la commande :
 ```bash
     ./vendor/bin/sail artisan migrate
 ```
-2. Pour exécute les "seeds", c'est-à-dire les données de base de données pré-remplies de l'application, exécutez la commande suivante:
+2. Pour exécuter les "seeds", c'est-à-dire les données de base de données pré-remplies de l'application, exécutez la commande suivante:
 
 ```bash
     ./vendor/bin/sail artisan db:seed
