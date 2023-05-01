@@ -6,7 +6,6 @@ Pour exécuter l'application sur votre ordinateur, vous devez d'abord installer 
 
 -   [PHP](https://www.php.net/manual/fr/install.php): Version 8.1.x
 -   [Composer](https://getcomposer.org/download/): Version 2.x
--   [Node.js](https://nodejs.org/en/): Version 16.x
 -   [Docker Desktop](https://docs.docker.com/desktop/install/windows-install/): Version 3.0.x
 
 ## Installation
@@ -57,7 +56,7 @@ Pour démarrer les containers Docker, exécutez la commande :
 ```bash
     ./vendor/bin/sail up
 ```
-
+**Vu que cette commande ne lance pas les containers en mode détache, je vous suggère d'ouvrir une nouvelle terminale pour compléter les étapes suivantes.**
 ### 5. Configuration de la base de donnée
 
 1. Pour exécuter les migrations de base de données, exécutez la commande :
@@ -69,6 +68,12 @@ Pour démarrer les containers Docker, exécutez la commande :
 
 ```bash
     ./vendor/bin/sail artisan db:seed
+```
+### 6. Exécution du serveur node
+Pour lancer npm directement dans le Docker container, exécutez la commande suivante: 
+
+```bash
+    ./vendor/bin/sail npm run dev
 ```
 
 email: admin@tersea.com
