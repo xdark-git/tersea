@@ -11,7 +11,7 @@ Pour exécuter l'application sur votre ordinateur, vous devez d'abord installer 
 
 ## Installation
 
-**Assurez-vous que vous avez installé Docker Desktop sur votre ordinateur et que Docker est en cours d'exécution.**.
+**Assurez-vous que Docker Desktop est bien installé sur votre ordinateur et est en cours d'exécution.**.
 ###  1. Cloner le projet.
 
 Ouvrez votre terminal et lancer ce commande
@@ -40,7 +40,7 @@ Ouvrez votre terminal et lancer ce commande
     MAIL_ENCRYPTION=
 ```
 
-###  3. Installation des dépendances du projet
+###  3. Installation les dépendances du projet
 
 Lancer la commande suivant pour installer les dépendances du projet
 
