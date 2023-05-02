@@ -22,9 +22,10 @@
 </template>
 <script>
 import { connectAdmin, connectEmployee } from "../../api/index.js";
+import Cookies from "js-cookie";
+const userCookieName = import.meta.env.VITE_VUE_APP_USER_COOKIE;
 
 export default {
-    name: "LoginAdmin",
     data() {
         if (this.$route.fullPath.match(/^\/admin\/login\/?$/)) {
             return {
@@ -40,7 +41,6 @@ export default {
     },
     methods: {
         async connectUser() {
-            // alert('clicked')
             const data = {
                 email: this.email,
                 password: this.password,
@@ -48,7 +48,13 @@ export default {
             const response = this.$route.fullPath.match(/^\/admin\/login\/?$/)
                 ? await connectAdmin(data)
                 : await connectEmployee(data);
-            console.log(response);
+
+            if (response.status == 202 && response.data) {
+                Cookies.set(userCookieName, JSON.stringify(response.data), {
+                    expires: 7,
+                    path: "/",
+                });
+            }
         },
     },
 };

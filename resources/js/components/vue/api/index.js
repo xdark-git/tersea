@@ -14,3 +14,7 @@ export const connectAdmin = (data) => {
 export const connectEmployee = (data) => {
     return api.post("/employee/login", data);
 };
+
+export const checkSession = (data) => {
+    return api.post("/verify/token", data);
+};

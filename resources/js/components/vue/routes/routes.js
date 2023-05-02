@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
+import Cookies from "js-cookie";
+import { checkSession } from "../api";
 
+const userCookieName = import.meta.env.VITE_VUE_APP_USER_COOKIE;
 const routes = [
     {
         path: "/",
@@ -13,11 +16,17 @@ const routes = [
         path: "/admin/login",
         name: "login",
         component: () => import("../pages/Admin/Login.vue"),
+        meta: {
+            needsToLogin: true,
+        },
     },
     {
         path: "/employee/login",
         name: "emp-login",
         component: () => import("../pages/Admin/Login.vue"),
+        meta: {
+            needsToLogin: true,
+        },
     },
     {
         path: "/:pathMatch(.*)",
@@ -29,10 +38,31 @@ const router = createRouter({
     history: createWebHistory(),
     routes,
 });
-router.beforeEach((to, from)=>{
-    // console.log(process.env.MIX_VUE_APP_USER_COOKIE)
-    if(to.meta.requiresAuth){
-        console.log('true')
+router.beforeEach(async (to, from) => {
+    const userCookie = Cookies.get(userCookieName);
+
+    try {
+        if(to.meta.needsToLogin && userCookie){
+            return { name: 'dashboard' }
+        }
+        if ((to.meta.requiresAuth && !userCookie)) {
+            return { name: "emp-login" };
+        }
+        if (to.meta.requiresAuth && userCookie) {
+            const userData = JSON.parse(userCookie);
+            const response = await checkSession({ token: userData.token });
+            if (response?.status === 200) {
+                const newUserData = { ...userData };
+
+                Cookies.set(userCookieName, JSON.stringify(newUserData), {
+                    expires: 7,
+                    path: "/",
+                });
+            }
+        }
+    } catch (error) {
+        Cookies.remove(userCookieName);
+        return { name: "emp-login" };
     }
-})
+});
 export default router;
