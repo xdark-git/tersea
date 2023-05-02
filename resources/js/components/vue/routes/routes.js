@@ -5,6 +5,9 @@ const routes = [
         path: "/",
         name: "dashboard",
         component: () => import("../pages/Dashboard/Dashboard.vue"),
+        meta: {
+            requiresAuth: true,
+        },
     },
     {
         path: "/admin/login",
@@ -26,5 +29,10 @@ const router = createRouter({
     history: createWebHistory(),
     routes,
 });
-
+router.beforeEach((to, from)=>{
+    // console.log(process.env.MIX_VUE_APP_USER_COOKIE)
+    if(to.meta.requiresAuth){
+        console.log('true')
+    }
+})
 export default router;
