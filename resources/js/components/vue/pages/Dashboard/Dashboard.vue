@@ -1,30 +1,6 @@
 <template >
     <div class="container">
-        <nav>
-            <ul>
-                <li>
-                    <router-link :to="{path:'/'}" class="link-back-homepage">Acceuil</router-link>
-                </li>
-                <li>
-                    <router-link :to="{path:'/'}" class="link-back-homepage">Mon Profile</router-link>
-                </li>
-                <li>
-                    <router-link :to="{path:'/'}" class="link-back-homepage">Liste des employés</router-link>
-                </li>
-                <li>
-                    <router-link :to="{path:'/'}" class="link-back-homepage">Liste des Entreprises</router-link>
-                </li>
-                <li>
-                    <router-link :to="{path:'/'}" class="link-back-homepage">Liste des admins</router-link>
-                </li>
-                <li>
-                    <router-link :to="{path:'/'}" class="link-back-homepage">Historique</router-link>
-                </li>
-            </ul>
-            <div class="logout">
-                <button>Se déconnecter</button>
-            </div>
-        </nav>
+        <app-header></app-header>
         <div class="content">
             <h1>Bonjour et Bienvenue</h1>
         </div>
@@ -32,5 +8,10 @@
 </template>
 
 <script>
-export default {};
+import AppHeader from '../../layout/AppHeader.vue';
+export default {
+    components:{
+        'app-header': AppHeader
+    }
+};
 </script>
