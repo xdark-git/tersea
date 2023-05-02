@@ -6,7 +6,6 @@
 
 import "./bootstrap";
 import { createApp } from "vue";
-import router from "./components/vue/routes/routes.js";
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
@@ -16,6 +15,8 @@ import router from "./components/vue/routes/routes.js";
 const app = createApp({});
 
 import App from "./components/vue/App.vue";
+import router from "./components/vue/routes/routes.js";
+import store  from "./components/vue/store/index.js"
 
 app.component("app-component", App);
 // createApp(ExampleComponent).mount("#app");
@@ -37,4 +38,4 @@ app.component("app-component", App);
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
 
-app.use(router).mount("#app");
+app.use(router).use(store).mount("#app");
