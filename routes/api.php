@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CheckController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\InvitationController;
 use App\Models\Admin;
@@ -30,6 +31,9 @@ Route::controller(AdminController::class)->prefix('/admin/')->group(function(){
         Route::post('add-new-admin', 'addNewAdmin');
         Route::post('add-new-company', 'addNewCompany');
     });
+});
+Route::controller(CheckController::class)->prefix('/verify/')->group(function(){
+    Route::post('token', 'checkSession');
 });
 Route::controller(CompanyController::class)->prefix('/company/')->group(function(){
     Route::middleware(['auth:sanctum', 'ability:admin'])->group(function (){

@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Open+Sans|Montserrat&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    font-family: "Roboto", arial, helvetica, sans-serif;
+    font-size: 18px;
+}
+body {
+    min-height: 100vh;
+    margin: 0 auto;
+    background-color: #F6F7FA;
+}
+
+h1 {
+    font-size: 1.25rem;
+    font-family: "Open Sans", sans-serif;
+}
+p {
+    font-size: 1rem;
+}
+
+.not-found,
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem;
+    gap: 20px;
+}
+.login form {
+    display: flex;
+    flex-direction: column;
+    gap: inherit;
+}
+.login form input {
+    width: 80vw;
+    max-width: 400px;
+    min-width: 90px;
+    height: 1.5rem;
+    padding: 0.8rem;
+}
+.login form button {
+    width: 80vw;
+    max-width: 400px;
+    min-width: 90px;
+    height: 1.5rem;
+    cursor: pointer;
+}
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex: row;
+    flex-direction: row;
+}
+.container nav {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    max-width: 350px;
+    min-width: fit-content;
+    color: #fff;
+    background-color: #0e1a35;
+}
+.container nav ul {
+    text-decoration: none;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+}
+.container ul .active {
+    background-color: #122143;
+}
+
+.container nav ul a {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #0d172e;
+    border-top: 1px solid #0d172e;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+.container nav ul li:hover {
+    background-color: #122143;
+}
+.container nav .logout {
+    width: auto;
+    position: absolute;
+    bottom: 25%;
+    align-self: center;
+}
+.container nav .logout button {
+    height: 45px;
+    width: auto;
+    padding: 0 1rem;
+    background-color: unset;
+    border: unset;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.container nav .logout button:hover {
+    background-color: #122143;
+}
+
+.container .content{
+    padding:  1rem;
+}
