@@ -6,19 +6,23 @@ const routes = [
     {
         path: "/",
         name: "dashboard",
-        component: Dashboard,
+        component: () => import("../pages/Dashboard/Dashboard.vue"),
     },
     {
         path: "/admin/login",
         name: "login",
-        component: Login,
+        component: () => import("../pages/Admin/Login.vue"),
     },
     {
         path: "/employee/login",
         name: "emp-login",
-        component: Login,
+        component: () => import("../pages/Admin/Login.vue"),
     },
-    { path: "/:pathMatch(.*)", name: "NotFound", component: NotFound },
+    {
+        path: "/:pathMatch(.*)",
+        name: "NotFound",
+        component: () => import("../pages/Dashboard/Dashboard.vue"),
+    },
 ];
 const router = createRouter({
     history: createWebHistory(),
