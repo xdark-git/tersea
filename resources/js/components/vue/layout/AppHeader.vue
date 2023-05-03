@@ -33,17 +33,23 @@
             </li>
         </ul>
         <div class="logout">
-            <button>Se déconnecter</button>
+            <button @click="logout">Se déconnecter</button>
         </div>
     </nav>
 </template>
 
 <script>
+import endSession from "../actions/logout";
 export default {
     // computed: {
     //     isUserLogin(){
     //         return this.$store.state.isUserLogin
     //     }
     // }
+    methods: {
+        logout() {
+            endSession(this.$router);
+        },
+    },
 };
 </script>
