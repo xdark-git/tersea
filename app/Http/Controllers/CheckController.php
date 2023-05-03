@@ -59,4 +59,28 @@ class CheckController extends Controller
             return $error->filter();
         }
     }
+
+    public function endSession(Request $request){
+   
+        try{
+            $authorizationHeader = $request->headers->get('Authorization');
+            $userToken = str_replace('Bearer ', '', $authorizationHeader);
+            $token = PersonalAccessToken::findToken($userToken);
+            if($token){
+                $token->delete();
+
+                return Response(Response::HTTP_NO_CONTENT);
+            }else{
+                return Response([
+                    'message' => 'Invalid token'
+                ], Response::HTTP_NOT_FOUND);
+            }
+        }catch(Exception $e){
+            $error = new ApiError($e);
+
+            return $error->filter();
+        }
+
+
+    }
 }
