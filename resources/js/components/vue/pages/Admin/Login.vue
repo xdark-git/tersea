@@ -54,6 +54,7 @@ export default {
                     expires: 7,
                     path: "/",
                 });
+                this.$router.push("/");
             }
         },
     },
