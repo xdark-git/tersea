@@ -46,7 +46,7 @@ router.beforeEach(async (to, from) => {
             return { name: 'dashboard' }
         }
         if ((to.meta.requiresAuth && !userCookie)) {
-            return { name: "emp-login" };
+            return { name: "login" };
         }
         if (to.meta.requiresAuth && userCookie) {
             const userData = JSON.parse(userCookie);
@@ -62,7 +62,7 @@ router.beforeEach(async (to, from) => {
         }
     } catch (error) {
         Cookies.remove(userCookieName);
-        return { name: "emp-login" };
+        return { name: "login" };
     }
 });
 export default router;
