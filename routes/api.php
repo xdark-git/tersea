@@ -32,9 +32,15 @@ Route::controller(AdminController::class)->prefix('/admin/')->group(function(){
         Route::post('add-new-company', 'addNewCompany');
     });
 });
+
 Route::controller(CheckController::class)->prefix('/verify/')->group(function(){
     Route::post('token', 'checkSession');
+    
+    Route::middleware(['auth:sanctum', 'ability:admin, employee'])->group(function (){
+        Route::delete('end-session', 'endSession');
+    });
 });
+
 Route::controller(CompanyController::class)->prefix('/company/')->group(function(){
     Route::middleware(['auth:sanctum', 'ability:admin'])->group(function (){
         Route::post('add-new-company', 'addNew');
@@ -45,6 +51,7 @@ Route::controller(CompanyController::class)->prefix('/company/')->group(function
         Route::get('get-all-companies', 'getAll');
     });
 });
+
 Route::controller(InvitationController::class)->prefix('/invitation/')->group(function(){
     Route::post('confirm', 'confirm');
     Route::middleware(['auth:sanctum', 'ability:admin'])->group(function (){
