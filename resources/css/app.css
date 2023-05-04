@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto|Open+Sans|Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto|Open+Sans|Montserrat&display=swap");
 
 * {
     margin: 0;
@@ -17,7 +17,7 @@
 body {
     min-height: 100vh;
     margin: 0 auto;
-    background-color: #F6F7FA;
+    background-color: #f6f7fa;
 }
 
 h1 {
@@ -100,7 +100,7 @@ p {
 .container nav .logout {
     width: auto;
     position: absolute;
-    bottom: 25%;
+    bottom: 75px;
     align-self: center;
 }
 .container nav .logout button {
@@ -118,6 +118,105 @@ p {
     background-color: #122143;
 }
 
-.container .content{
-    padding:  1rem;
+.container .content {
+    padding: 1rem;
+    width: 100%;
 }
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    gap: 15px;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    background-color: #fff;
+}
+
+.profile div {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(204, 204, 204);
+}
+.profile > div:last-child {
+    border-bottom: unset;
+}
+.profile div p {
+    width: 50%;
+    color: #000;
+}
+.profile div > p:last-child {
+    color: #7c7c7c;
+}
+.profile div button {
+    padding: 0.5rem;
+    font-size: 16px;
+    width: auto;
+    height: 2rem;
+    color: #fff;
+    background-color: #2eacff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.profile div button:hover {
+    background-color: #0e1a35;
+}
+
+.content .header {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+.container .header button {
+    padding: 0.5rem;
+    font-size: 16px;
+    width: auto;
+    height: 2rem;
+    color: #fff;
+    background-color: #2eacff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.container .header button:hover {
+    background-color: #0e1a35;
+}
+
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td,
+#customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+
+}
+
+#customers tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+    background-color: #ddd;
+}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #0e1a35;
+    color: white;
+}
+/* #customers tr > td:last-child{
+    cursor: pointer;
+}
+#customers tr > td:last-child:hover{
+    background-color: red;
+} */
