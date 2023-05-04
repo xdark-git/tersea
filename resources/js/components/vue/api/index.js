@@ -22,6 +22,9 @@ api.interceptors.request.use((req) => {
 export const connectAdmin = (data) => {
     return api.post("/admin/login", data);
 };
+export const getAllEmployee = () => {
+    return api.get("/admin/get-all-employees");
+};
 
 export const connectEmployee = (data) => {
     return api.post("/employee/login", data);
