@@ -13,6 +13,22 @@ const routes = [
         },
     },
     {
+        path: "/profil",
+        name: "my-profile",
+        component: () => import("../pages/User/MyProfile.vue"),
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
+        path: "/employees",
+        name: "employees",
+        component: () => import("../pages/User/ListEmployees.vue"),
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
         path: "/admin/login",
         name: "login",
         component: () => import("../pages/Admin/Login.vue"),
@@ -42,10 +58,10 @@ router.beforeEach(async (to, from) => {
     const userCookie = Cookies.get(userCookieName);
 
     try {
-        if(to.meta.needsToLogin && userCookie){
-            return { name: 'dashboard' }
+        if (to.meta.needsToLogin && userCookie) {
+            return { name: "dashboard" };
         }
-        if ((to.meta.requiresAuth && !userCookie)) {
+        if (to.meta.requiresAuth && !userCookie) {
             return { name: "login" };
         }
         if (to.meta.requiresAuth && userCookie) {
