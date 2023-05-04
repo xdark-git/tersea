@@ -28,6 +28,7 @@ Route::controller(AdminController::class)->prefix('/admin/')->group(function(){
 
     Route::middleware(['auth:sanctum', 'ability:admin'])->group(function (){
         Route::get('get-all-admins', 'getAllAdmins');
+        Route::get('get-all-employees', 'getAllEmployees');
         Route::post('add-new-admin', 'addNewAdmin');
         Route::post('add-new-company', 'addNewCompany');
     });

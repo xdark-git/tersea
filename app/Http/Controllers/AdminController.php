@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\ApiError;
 use App\Http\Resources\AdminResource;
+use App\Http\Resources\EmployeeResource;
 use App\Models\Admin;
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
@@ -86,5 +87,12 @@ class AdminController extends Controller
 
             return $error->filter();
         }
+    }
+
+    public function getAllEmployees(Request $request){
+        
+        return Response([
+            'data' => EmployeeResource::collection(Admin::all())
+        ], Response::HTTP_OK);
     }
 }
