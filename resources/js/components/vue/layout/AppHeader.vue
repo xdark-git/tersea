@@ -2,34 +2,26 @@
     <nav>
         <ul>
             <li>
-                <router-link :to="{ path: '/' }" class="link-back-homepage"
-                    >Acceuil</router-link
-                >
+                <router-link :to="{ path: '/' }">Acceuil</router-link>
             </li>
             <li>
-                <router-link :to="{ path: '/' }" class="link-back-homepage"
-                    >Mon Profile</router-link
-                >
+                <router-link :to="{ path: '/profil' }">Mon Profile</router-link>
             </li>
             <li>
-                <router-link :to="{ path: '/' }" class="link-back-homepage"
+                <router-link :to="{ path: '/employees' }"
                     >Liste des employés</router-link
                 >
             </li>
             <li>
-                <router-link :to="{ path: '/' }" class="link-back-homepage"
+                <router-link :to="{ path: '/' }"
                     >Liste des Entreprises</router-link
                 >
             </li>
             <li>
-                <router-link :to="{ path: '/' }" class="link-back-homepage"
-                    >Liste des admins</router-link
-                >
+                <router-link :to="{ path: '/' }">Liste des admins</router-link>
             </li>
             <li>
-                <router-link :to="{ path: '/' }" class="link-back-homepage"
-                    >Historique</router-link
-                >
+                <router-link :to="{ path: '/' }">Historique</router-link>
             </li>
         </ul>
         <div class="logout">
